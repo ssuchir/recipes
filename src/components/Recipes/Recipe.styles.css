@@ -1,0 +1,11 @@
+.ingredients {
+  text-align: left;
+  padding: 1em;
+  background-color: #e6e8eb;
+  /* background-color: #e6e8eb; */
+}
+
+.instructions {
+  text-align: left;
+  padding: 2em 0 2em;
+}
