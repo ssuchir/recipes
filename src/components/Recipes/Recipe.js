@@ -66,19 +66,11 @@ const Recipe = () => {
 
                   <p>
                     {" "}
-                    {ingred.uuid}
-                    {" -----     "}
-                    {/* {ingredients[itemArray.indexOf(ingred.uuid)] > "0"
-                      ? ingredients[itemArray.indexOf(ingred.uuid)].text
-                      : "none found"} */}
-                    {" -----     "}
-                    {itemArray.indexOf(ingred.uuid)}
-                    {/* {ingredients[itemArray?.indexOf(ingred.uuid)]} */}
-                    {/* {console.log(ingredients[itemArray.indexOf(ingred.uuid)])} */}
-                    {/* {this} */}
-                    {/* {console.log("start-----", [
-                      itemArray.indexOf(ingred.uuid),
-                    ])} */}
+                    {itemArray.indexOf(ingred.uuid) >= 0
+                      ? ingredients[itemArray.indexOf(ingred.uuid)].title +
+                        ingredients[itemArray.indexOf(ingred.uuid)].type +
+                        ingredients[itemArray.indexOf(ingred.uuid)].text
+                      : ""}
                   </p>
                 </li>
               ))}
@@ -86,7 +78,6 @@ const Recipe = () => {
           </AccordionDetails>
         </Accordion>
       ))}
-      <div>{ingredientUUID}</div>
     </div>
   );
 };
