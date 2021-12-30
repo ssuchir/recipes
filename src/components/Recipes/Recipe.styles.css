@@ -1,11 +1,22 @@
+.accordian {
+  /* max-width: 50em; */
+  justify-content: center;
+  align-items: center;
+  margin: 5%;
+}
+
 .ingredients {
+  background-color: #e6e8eb;
   text-align: left;
   padding: 1em;
-  background-color: #e6e8eb;
-  /* background-color: #e6e8eb; */
 }
 
 .instructions {
   text-align: left;
-  padding: 2em 0 2em;
+  padding-bottom: 2em;
+}
+
+.image {
+  justify-content: center;
+  align-items: center;
 }

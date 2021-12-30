@@ -13,6 +13,7 @@ import "./Recipe.styles.css";
 const Recipe = () => {
   const [data, setData] = useState();
   const [ingredients, setIngredients] = useState();
+  const [ingredientUUID, setIngredientUUID] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/recipes`)
@@ -24,13 +25,18 @@ const Recipe = () => {
   }, []);
 
   console.log(data);
+  // console.log("ingred array", ingredients);
+  let itemArray = [];
+  const buildUUIDArray = () => {
+    ingredients?.map((ingred) => itemArray.push(ingred.ingredientId));
+  };
 
-  console.log(ingredients);
-
+  buildUUIDArray();
+  console.log("itemArray", itemArray);
   return (
-    <div>
+    <div className="accordian">
       {data?.map((item) => (
-        <Accordion>
+        <Accordion key={item.uuid}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
@@ -50,22 +56,37 @@ const Recipe = () => {
             </Typography>
             <Card className="ingredients">
               <h5>Ingredients</h5>
-              {item.ingredients.map((item) => (
-                <li>
-                  {item.amount + " " + item.measurement + " of " + item.name}
+              {item.ingredients.map((ingred) => (
+                <li key={ingred.uuid}>
+                  {ingred.amount +
+                    " " +
+                    ingred.measurement +
+                    " of " +
+                    ingred.name}
 
-                  {/* <p>
+                  <p>
                     {" "}
-                    {item.uuid}
+                    {ingred.uuid}
                     {" -----     "}
-                    {ingredients.map((ingred) => ingred.ingredientId)}
-                  </p> */}
+                    {/* {ingredients[itemArray.indexOf(ingred.uuid)] > "0"
+                      ? ingredients[itemArray.indexOf(ingred.uuid)].text
+                      : "none found"} */}
+                    {" -----     "}
+                    {itemArray.indexOf(ingred.uuid)}
+                    {/* {ingredients[itemArray?.indexOf(ingred.uuid)]} */}
+                    {/* {console.log(ingredients[itemArray.indexOf(ingred.uuid)])} */}
+                    {/* {this} */}
+                    {/* {console.log("start-----", [
+                      itemArray.indexOf(ingred.uuid),
+                    ])} */}
+                  </p>
                 </li>
               ))}
             </Card>
           </AccordionDetails>
         </Accordion>
       ))}
+      <div>{ingredientUUID}</div>
     </div>
   );
 };
