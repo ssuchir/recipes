@@ -3,16 +3,20 @@
   align-items: center;
   margin: 5%;
 }
+.accordianDetails {
+  background-color: #f7f6f3 !important;
+}
 
 .ingredients {
-  background-color: #e6e8eb;
+  background-color: #e9e7e3 !important;
   text-align: left;
-  padding: 3em;
+  padding: 2em;
+  font-size: larger;
 }
 
 .instructions {
   text-align: left;
-  padding-bottom: 2em;
+  padding: 1.5em 0 1.5em 0;
 }
 
 .image {
@@ -21,5 +25,15 @@
 }
 
 .badge {
-  padding-bottom: 35px;
+  margin-right: 35px;
+  margin-left: 35px;
+  padding-right: 10px;
+}
+
+.chip {
+  font-size: smaller;
+}
+
+.header {
+  text-align: center;
 }

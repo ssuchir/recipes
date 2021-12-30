@@ -37,19 +37,22 @@ const Recipe = () => {
       {data?.map((item) => (
         <Accordion key={item.uuid}>
           <AccordionSummary
+            className="accordianDetails"
             expandIcon={<ExpandMoreIcon />}
             aria-controls="panel1a-content"
             id="panel1a-header"
           >
-            <Typography>{item.title}</Typography>
+            <Typography variant="h5">{item.title}</Typography>
           </AccordionSummary>
-          <AccordionDetails>
+          <AccordionDetails className="accordianDetails">
             {" "}
-            <img
-              src={"http://localhost:3001" + item.images.medium}
-              alt="recipeImage"
-            />
-            <h4>Cooking Instructions</h4>
+            <div className="image">
+              <img
+                src={"http://localhost:3001" + item.images.medium}
+                alt="recipeImage"
+              />
+            </div>
+            <h4 className="title">Cooking Instructions</h4>
             <Typography className="instructions">
               {item.directions.map((item) => item.instructions)}
             </Typography>
@@ -57,13 +60,14 @@ const Recipe = () => {
               <h5>Ingredients</h5>
               {item.ingredients.map((ingred) => (
                 <li key={ingred.uuid}>
-                  {ingred.amount +
-                    " " +
-                    ingred.measurement +
-                    " of " +
-                    ingred.name}
-
-                  <p>
+                  {!ingred.amount
+                    ? ingred.name
+                    : ingred.amount +
+                      " " +
+                      ingred.measurement +
+                      " of " +
+                      ingred.name}
+                  <span>
                     {" "}
                     {itemArray.indexOf(ingred.uuid) >= 0 ? (
                       <div>
@@ -75,6 +79,7 @@ const Recipe = () => {
                           }
                         ></Badge>
                         <Chip
+                          className="chip"
                           label={
                             ingredients[itemArray.indexOf(ingred.uuid)].title +
                             "! "
@@ -89,7 +94,7 @@ const Recipe = () => {
                     ) : (
                       ""
                     )}
-                  </p>
+                  </span>
                 </li>
               ))}
             </Card>
