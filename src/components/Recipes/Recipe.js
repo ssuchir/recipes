@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import React from "react";
 
 import Accordion from "@mui/material/Accordion";
+import Badge from "@mui/material/Badge";
+import Chip from "@mui/material/Chip";
 import Card from "@mui/material/Card";
 import AccordionSummary from "@mui/material/AccordionSummary";
 import AccordionDetails from "@mui/material/AccordionDetails";
@@ -13,7 +15,6 @@ import "./Recipe.styles.css";
 const Recipe = () => {
   const [data, setData] = useState();
   const [ingredients, setIngredients] = useState();
-  const [ingredientUUID, setIngredientUUID] = useState([]);
 
   useEffect(() => {
     fetch(`http://localhost:3001/recipes`)
@@ -24,8 +25,6 @@ const Recipe = () => {
       .then((data) => setIngredients(data));
   }, []);
 
-  console.log(data);
-  // console.log("ingred array", ingredients);
   let itemArray = [];
   const buildUUIDArray = () => {
     ingredients?.map((ingred) => itemArray.push(ingred.ingredientId));
@@ -66,11 +65,30 @@ const Recipe = () => {
 
                   <p>
                     {" "}
-                    {itemArray.indexOf(ingred.uuid) >= 0
-                      ? ingredients[itemArray.indexOf(ingred.uuid)].title +
-                        ingredients[itemArray.indexOf(ingred.uuid)].type +
-                        ingredients[itemArray.indexOf(ingred.uuid)].text
-                      : ""}
+                    {itemArray.indexOf(ingred.uuid) >= 0 ? (
+                      <div>
+                        <Badge
+                          className="badge"
+                          color="primary"
+                          badgeContent={
+                            ingredients[itemArray.indexOf(ingred.uuid)].type
+                          }
+                        ></Badge>
+                        <Chip
+                          label={
+                            ingredients[itemArray.indexOf(ingred.uuid)].title +
+                            "! "
+                          }
+                        />
+                        <Chip
+                          label={
+                            ingredients[itemArray.indexOf(ingred.uuid)].text
+                          }
+                        />
+                      </div>
+                    ) : (
+                      ""
+                    )}
                   </p>
                 </li>
               ))}

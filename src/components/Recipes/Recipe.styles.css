@@ -1,5 +1,4 @@
 .accordian {
-  /* max-width: 50em; */
   justify-content: center;
   align-items: center;
   margin: 5%;
@@ -8,7 +7,7 @@
 .ingredients {
   background-color: #e6e8eb;
   text-align: left;
-  padding: 1em;
+  padding: 3em;
 }
 
 .instructions {
@@ -19,4 +18,8 @@
 .image {
   justify-content: center;
   align-items: center;
+}
+
+.badge {
+  padding-bottom: 35px;
 }
